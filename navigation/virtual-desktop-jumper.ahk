@@ -10,9 +10,16 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; Global variables
 global currentDesktop := 1
 global totalDesktops := 1
+global logEntries := []
+global maxVisibleLogs := 50
+global maxFileLogs := 200
+global logFilePath := A_ScriptDir . "\allogs.txt"
 
 ; Initialize by counting existing desktops
 CountVirtualDesktops()
+
+; Initialize logging
+InitializeLogging()
 
 ; Hotkeys for jumping to specific virtual desktops
 ^#Numpad1::JumpToDesktop(1)
@@ -42,18 +49,140 @@ CountVirtualDesktops()
 ; Show current desktop info (Ctrl+Win+I)
 ^#i::ShowDesktopInfo()
 
+; Show recent logs (Ctrl+Win+L)
+^#l::ShowRecentLogs()
+
+; Function to initialize logging system
+InitializeLogging() {
+    global logEntries, logFilePath
+    
+    ; Create log file if it doesn't exist
+    if (!FileExist(logFilePath)) {
+        FileAppend, ;, %logFilePath%
+    }
+    
+    ; Load existing logs from file (limited to maxFileLogs)
+    LoadLogsFromFile()
+    
+    ; Add initial log entry
+    AddLog("INFO", "Virtual Desktop Jumper initialized")
+}
+
+; Function to add log entry
+AddLog(level, message, context := "") {
+    global logEntries, maxVisibleLogs, maxFileLogs, logFilePath
+    
+    ; Create log entry
+    timestamp := A_Now
+    entry := timestamp . " [" . level . "] " . message
+    if (context != "") {
+        entry := entry . " {" . context . "}"
+    }
+    
+    ; Add to memory array (limited to maxVisibleLogs)
+    logEntries.InsertAt(1, entry)
+    if (logEntries.Length() > maxVisibleLogs) {
+        logEntries.Pop()
+    }
+    
+    ; Write to file
+    FileAppend, %entry%`n, %logFilePath%
+    
+    ; Check if file has too many entries and rotate if needed
+    CheckAndRotateLogFile()
+}
+
+; Function to load logs from file
+LoadLogsFromFile() {
+    global logEntries, maxVisibleLogs, logFilePath
+    
+    if (FileExist(logFilePath)) {
+        Loop, Read, %logFilePath%
+        {
+            if (A_LoopReadLine != "") {
+                logEntries.InsertAt(1, A_LoopReadLine)
+                if (logEntries.Length() > maxVisibleLogs) {
+                    logEntries.Pop()
+                }
+            }
+        }
+    }
+}
+
+; Function to check and rotate log file
+CheckAndRotateLogFile() {
+    global logFilePath, maxFileLogs
+    
+    ; Count lines in file
+    lineCount := 0
+    Loop, Read, %logFilePath%
+    {
+        lineCount++
+    }
+    
+    ; If file has more than maxFileLogs entries, overwrite it
+    if (lineCount > maxFileLogs) {
+        ; Keep only the most recent entries
+        tempArray := []
+        Loop, Read, %logFilePath%
+        {
+            if (A_LoopReadLine != "") {
+                tempArray.InsertAt(1, A_LoopReadLine)
+            }
+        }
+        
+        ; Clear file and write only recent entries
+        FileDelete, %logFilePath%
+        Loop, %tempArray.Length()
+        {
+            if (A_Index <= maxFileLogs) {
+                FileAppend, % tempArray[A_Index] . "`n", %logFilePath%
+            }
+        }
+    }
+}
+
+; Function to show recent logs
+ShowRecentLogs() {
+    global logEntries, maxVisibleLogs
+    
+    if (logEntries.Length() = 0) {
+        ShowTooltip("No logs available")
+        return
+    }
+    
+    ; Create log display (limited to maxVisibleLogs)
+    logDisplay := "Recent Logs:`n"
+    Loop, % Min(logEntries.Length(), maxVisibleLogs)
+    {
+        logDisplay := logDisplay . logEntries[A_Index] . "`n"
+    }
+    
+    ; Show in a simple message box (limited size to prevent crashes)
+    if (StrLen(logDisplay) > 1000) {
+        logDisplay := SubStr(logDisplay, 1, 1000) . "`n... (truncated)"
+    }
+    
+    MsgBox, %logDisplay%
+}
+
 ; Function to jump to a specific virtual desktop
 JumpToDesktop(targetDesktop) {
     global currentDesktop, totalDesktops
     
+    ; Log the jump attempt
+    AddLog("INFO", "Jump attempt to desktop " . targetDesktop, "current:" . currentDesktop)
+    
     ; Validate target desktop number
     if (targetDesktop < 1 || targetDesktop > totalDesktops) {
+        AddLog("WARN", "Invalid desktop number " . targetDesktop, "total:" . totalDesktops)
         ShowTooltip("Desktop " . targetDesktop . " does not exist. Total: " . totalDesktops)
         return
     }
     
     ; If we're already on the target desktop, do nothing
     if (targetDesktop = currentDesktop) {
+        AddLog("INFO", "Already on target desktop " . currentDesktop)
         ShowTooltip("Already on Desktop " . currentDesktop)
         return
     }
@@ -79,6 +208,9 @@ JumpToDesktop(targetDesktop) {
     ; Update current desktop tracking
     currentDesktop := targetDesktop
     
+    ; Log successful jump
+    AddLog("INFO", "Successfully jumped to desktop " . currentDesktop, "moved:" . desktopsToMove)
+    
     ; Show confirmation
     ShowTooltip("Jumped to Desktop " . currentDesktop)
 }
@@ -93,12 +225,15 @@ CountVirtualDesktops() {
     
     ; Try to detect existing desktops by attempting to navigate
     ; Note: This is not 100% reliable but gives a reasonable starting point
+    AddLog("INFO", "Desktop count initialized", "count:" . totalDesktops)
     ShowTooltip("Desktop count initialized. Use Ctrl+Win+R to refresh count.")
 }
 
 ; Function to refresh desktop count
 RefreshDesktopCount() {
     global totalDesktops, currentDesktop
+    
+    AddLog("INFO", "Refreshing desktop count")
     
     ; Reset to 1 and try to count by navigating
     totalDesktops := 1
@@ -124,15 +259,16 @@ RefreshDesktopCount() {
         Send, #^{Left}
         Sleep, 100
     }
-    
     currentDesktop := 1
     
+    AddLog("INFO", "Desktop count refreshed", "found:" . totalDesktops)
     ShowTooltip("Refreshed: Found " . totalDesktops . " virtual desktops")
 }
 
 ; Function to show current desktop information
 ShowDesktopInfo() {
     global currentDesktop, totalDesktops
+    AddLog("INFO", "Desktop info requested", "current:" . currentDesktop . "/" . totalDesktops)
     ShowTooltip("Current: Desktop " . currentDesktop . " of " . totalDesktops)
 }
 
@@ -148,6 +284,7 @@ ToolTip
 return
 
 ; Show startup message
+AddLog("INFO", "Virtual Desktop Jumper loaded")
 ShowTooltip("Virtual Desktop Jumper loaded! Use Ctrl+Win+Numpad to jump to desktops.")
 SetTimer, RemoveTooltip, -3000
 
@@ -155,6 +292,7 @@ SetTimer, RemoveTooltip, -3000
 Menu, Tray, NoStandard
 Menu, Tray, Add, Refresh Desktop Count, RefreshDesktopCount
 Menu, Tray, Add, Show Desktop Info, ShowDesktopInfo
+Menu, Tray, Add, Show Recent Logs, ShowRecentLogs
 Menu, Tray, Add
 Menu, Tray, Add, Exit, ExitApp
 Menu, Tray, Default, Refresh Desktop Count
