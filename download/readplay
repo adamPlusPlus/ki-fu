@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# readplay - Simple wrapper for playlist_to_doc.sh
+# Usage: readplay <playlist_url>
+# Defaults to English language and auto-generated output filename
+
+if [[ $# -lt 1 ]]; then
+    echo "Usage: readplay <playlist_url>"
+    echo "Example: readplay \"https://youtube.com/playlist?list=PL...\""
+    exit 1
+fi
+
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Run the bash script (English only)
+"$SCRIPT_DIR/playlist_to_doc.sh" "$1"
+
+# Check if the script ran successfully
+if [[ $? -eq 0 ]]; then
+    echo
+    echo "Playlist processing completed successfully!"
+    echo "Check the current directory for the output file."
+else
+    echo
+    echo "Error: Playlist processing failed."
+    echo "Make sure you have yt-dlp and jq available in PATH or current directory."
+fi

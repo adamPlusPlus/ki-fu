@@ -1,0 +1,100 @@
+#!/usr/bin/env bash
+# install - Download and install required tools for readplay
+# Usage: ./install
+
+set -euo pipefail
+
+echo "========================================"
+echo "Installing Required Tools for readplay"
+echo "========================================"
+echo
+
+# Function to check if a command exists and show version
+check_tool() {
+    local tool="$1"
+    local exe="$2"
+    echo "Testing $tool installation..."
+    if command -v "$exe" >/dev/null 2>&1; then
+        echo "✓ $tool version: $("$exe" --version)"
+        return 0
+    else
+        echo "✗ $tool not working"
+        return 1
+    fi
+}
+
+# Function to download with error checking
+download_file() {
+    local url="$1"
+    local output="$2"
+    local tool_name="$3"
+    
+    echo "Downloading $tool_name..."
+    if curl -L -o "$output" "$url"; then
+        if [[ -f "$output" && -s "$output" ]]; then
+            echo "✓ $tool_name downloaded successfully"
+            return 0
+        else
+            echo "✗ $tool_name download failed (empty file)"
+            return 1
+        fi
+    else
+        echo "✗ $tool_name download failed"
+        return 1
+    fi
+}
+
+# Install yt-dlp
+echo "[1/2] Installing yt-dlp..."
+if download_file \
+    "https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe" \
+    "yt-dlp.exe" \
+    "yt-dlp"; then
+    
+    chmod +x yt-dlp.exe
+    if check_tool "yt-dlp" "./yt-dlp.exe"; then
+        echo "✓ yt-dlp installation complete"
+    else
+        echo "✗ yt-dlp installation failed"
+        exit 1
+    fi
+else
+    echo "✗ Failed to install yt-dlp"
+    exit 1
+fi
+echo
+
+# Install jq
+echo "[2/2] Installing jq..."
+# Try latest version first, fallback to 1.7.1 if that fails
+if download_file \
+    "https://github.com/stedolan/jq/releases/download/jq-1.7.1/jq-windows-amd64.exe" \
+    "jq.exe" \
+    "jq"; then
+    
+    chmod +x jq.exe
+    if check_tool "jq" "./jq.exe"; then
+        echo "✓ jq installation complete"
+    else
+        echo "✗ jq installation failed"
+        exit 1
+    fi
+else
+    echo "✗ Failed to install jq"
+    exit 1
+fi
+echo
+
+echo "========================================"
+echo "All tools installed successfully!"
+echo "========================================"
+echo
+echo "You can now use: readplay <playlist_url>"
+echo
+echo "Example:"
+echo "  readplay \"https://youtube.com/playlist?list=PL...\""
+echo
+echo "Files installed:"
+echo "  - yt-dlp.exe ($(du -h yt-dlp.exe | cut -f1))"
+echo "  - jq.exe ($(du -h jq.exe | cut -f1))"
+echo
