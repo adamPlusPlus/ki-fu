@@ -364,3 +364,24 @@ done
 
 echo "==> Done."
 echo "Merged document: $OUT_FILE"
+echo
+
+# Cleanup temporary files and work directories
+echo "==> Cleaning up temporary files..."
+if [[ -d "$WORKDIR" ]]; then
+  rm -rf "$WORKDIR"
+  echo "  - Removed work directory: $WORKDIR"
+fi
+
+# Remove any other temporary files that might have been created
+for temp_file in playlist_merged_*.md _ytpl_work_* *.tmp *.log; do
+  if [[ -e "$temp_file" ]]; then
+    rm -rf "$temp_file"
+    echo "  - Removed: $temp_file"
+  fi
+done
+
+echo "==> Cleanup completed."
+echo
+echo "Playlist processing completed successfully!"
+echo "Final output: $OUT_FILE"
