@@ -1,0 +1,135 @@
+Universal ROM Download Session Started: Fri, Aug 22, 2025  8:47:47 PM
+2025-08-22 20:47:47: \033[0;32mSelected platform: Sony - PlayStation 2\033[0m
+2025-08-22 20:47:47: \033[0;34mDownloading archive index for: Sony - PlayStation 2\033[0m
+2025-08-22 20:47:50: \033[0;32mArchive index downloaded successfully\033[0m
+2025-08-22 20:47:51: Found 42 games to process
+2025-08-22 20:47:51: \033[0;34m[1/42] Processing: OutRun 2006: Coast to Coast\033[0m
+2025-08-22 20:47:51: \033[0;34mSearching for: OutRun 2006: Coast to Coast\033[0m
+2025-08-22 20:47:52: \033[1;33mNo matches found for: OutRun 2006: Coast to Coast\033[0m
+2025-08-22 20:47:53: \033[1;33mCould not find suitable match for: OutRun 2006: Coast to Coast\033[0m
+2025-08-22 20:47:53: \033[0;34mWaiting 3 seconds before next download...\033[0m
+2025-08-22 20:47:56: \033[0;34m[2/42] Processing: Tokyo Extreme Racer: Drift 2\033[0m
+2025-08-22 20:47:57: \033[0;34mSearching for: Tokyo Extreme Racer: Drift 2\033[0m
+2025-08-22 20:47:58: \033[1;33mNo matches found for: Tokyo Extreme Racer: Drift 2\033[0m
+2025-08-22 20:47:58: \033[1;33mCould not find suitable match for: Tokyo Extreme Racer: Drift 2\033[0m
+2025-08-22 20:47:58: \033[0;34mWaiting 3 seconds before next download...\033[0m
+2025-08-22 20:48:01: \033[0;34m[3/42] Processing: Mysteries\033[0m
+2025-08-22 20:48:02: \033[0;34mSearching for: Mysteries\033[0m
+2025-08-22 20:48:03: \033[0;32mFound 2 potential matches for: Mysteries\033[0m
+2025-08-22 20:48:05: \033[0;34mDownloading: Mysteries\033[0m
+2025-08-22 20:48:05: Filename: Tokobot%20Plus%20-%20Mysteries%20of%20the%20Karakuri%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.zip
+2025-08-22 20:48:05: URL: https://myrient.erista.me/files/Redump/Sony%20-%20PlayStation%202/Tokobot%20Plus%20-%20Mysteries%20of%20the%20Karakuri%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.zip
+2025-08-22 20:53:00: \033[0;32mSuccessfully downloaded: Mysteries\033[0m
+2025-08-22 20:53:01: \033[0;32mRemoved 'Mysteries' from download queue\033[0m
+2025-08-22 20:53:01: \033[0;32m✓ Completed: Mysteries\033[0m
+2025-08-22 20:53:01: \033[0;34mWaiting 3 seconds before next download...\033[0m
+2025-08-22 20:53:04: \033[0;34m[4/42] Processing: Multi Blaze Actress Again\033[0m
+2025-08-22 20:53:04: \033[0;34mSearching for: Multi Blaze Actress Again\033[0m
+2025-08-22 20:53:06: \033[1;33mNo matches found for: Multi Blaze Actress Again\033[0m
+2025-08-22 20:53:06: \033[1;33mCould not find suitable match for: Multi Blaze Actress Again\033[0m
+2025-08-22 20:53:06: \033[0;34mWaiting 3 seconds before next download...\033[0m
+2025-08-22 20:53:09: \033[0;34m[5/42] Processing: Pump It Up: Prime\033[0m
+2025-08-22 20:53:10: \033[0;34mSearching for: Pump It Up: Prime\033[0m
+2025-08-22 20:53:11: \033[1;33mNo matches found for: Pump It Up: Prime\033[0m
+2025-08-22 20:53:11: \033[1;33mCould not find suitable match for: Pump It Up: Prime\033[0m
+2025-08-22 20:53:12: \033[0;34mWaiting 3 seconds before next download...\033[0m
+2025-08-22 20:53:15: \033[0;34m[6/42] Processing: Fist of the North Star\033[0m
+2025-08-22 20:53:15: \033[0;34mSearching for: Fist of the North Star\033[0m
+2025-08-22 20:53:17: \033[1;33mNo matches found for: Fist of the North Star\033[0m
+2025-08-22 20:53:17: \033[1;33mCould not find suitable match for: Fist of the North Star\033[0m
+2025-08-22 20:53:17: \033[0;34mWaiting 3 seconds before next download...\033[0m
+2025-08-22 20:53:20: \033[0;34m[7/42] Processing: Hack: Infection\033[0m
+2025-08-22 20:53:21: \033[0;34mSearching for: Hack: Infection\033[0m
+2025-08-22 20:53:22: \033[0;32mFound 6 potential matches for: Hack: Infection\033[0m
+2025-08-22 20:53:29: \033[0;34mDownloading: Hack: Infection\033[0m
+2025-08-22 20:53:29: Filename: Dot%20Hack%20Part%201%20-%20Infection%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29%20%28Beta%29%20%282004-01-09%29.zip
+2025-08-22 20:53:29: URL: https://myrient.erista.me/files/Redump/Sony%20-%20PlayStation%202/Dot%20Hack%20Part%201%20-%20Infection%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29%20%28Beta%29%20%282004-01-09%29.zip
+2025-08-22 20:55:15: \033[0;32mSuccessfully downloaded: Hack: Infection\033[0m
+2025-08-22 20:55:15: \033[0;32mRemoved 'Hack: Infection' from download queue\033[0m
+2025-08-22 20:55:15: \033[0;32m✓ Completed: Hack: Infection\033[0m
+2025-08-22 20:55:15: \033[0;34mWaiting 3 seconds before next download...\033[0m
+2025-08-22 20:55:18: \033[0;34m[8/42] Processing: Xenosaga Episode 3\033[0m
+2025-08-22 20:55:19: \033[0;34mSearching for: Xenosaga Episode 3\033[0m
+2025-08-22 20:55:20: \033[0;32mFound 10 potential matches for: Xenosaga Episode 3\033[0m
+2025-08-22 20:55:30: \033[0;34mDownloading: Xenosaga Episode 3\033[0m
+2025-08-22 20:55:30: Filename: Xenosaga%20Episode%20II%20-%20Jenseits%20von%20Gut%20und%20Boese%20%28Europe%29%20%28En%2CFr%2CDe%29%20%28Disc%201%29.zip
+2025-08-22 20:55:30: URL: https://myrient.erista.me/files/Redump/Sony%20-%20PlayStation%202/Xenosaga%20Episode%20II%20-%20Jenseits%20von%20Gut%20und%20Boese%20%28Europe%29%20%28En%2CFr%2CDe%29%20%28Disc%201%29.zip
+2025-08-22 20:58:10: \033[0;32mSuccessfully downloaded: Xenosaga Episode 3\033[0m
+2025-08-22 20:58:10: \033[0;32mRemoved 'Xenosaga Episode 3' from download queue\033[0m
+2025-08-22 20:58:10: \033[0;32m✓ Completed: Xenosaga Episode 3\033[0m
+2025-08-22 20:58:10: \033[0;34mWaiting 3 seconds before next download...\033[0m
+2025-08-22 20:58:13: \033[0;34m[9/42] Processing: The Thing\033[0m
+2025-08-22 20:58:14: \033[0;34mSearching for: The Thing\033[0m
+2025-08-22 20:58:15: \033[0;32mFound 3 potential matches for: The Thing\033[0m
+2025-08-22 20:58:19: \033[0;34mDownloading: The Thing\033[0m
+2025-08-22 20:58:19: Filename: Thing%2C%20The%20%28Europe%29%20%28En%2CFr%2CEs%2CIt%29.zip
+2025-08-22 20:58:19: URL: https://myrient.erista.me/files/Redump/Sony%20-%20PlayStation%202/Thing%2C%20The%20%28Europe%29%20%28En%2CFr%2CEs%2CIt%29.zip
+2025-08-22 20:58:46: \033[0;32mSuccessfully downloaded: The Thing\033[0m
+2025-08-22 20:58:46: \033[0;32mRemoved 'The Thing' from download queue\033[0m
+2025-08-22 20:58:46: \033[0;32m✓ Completed: The Thing\033[0m
+2025-08-22 20:58:46: \033[0;34mWaiting 3 seconds before next download...\033[0m
+2025-08-22 20:58:49: \033[0;34m[10/42] Processing: The Suffering\033[0m
+2025-08-22 20:58:50: \033[0;34mSearching for: The Suffering\033[0m
+2025-08-22 20:58:51: \033[0;32mFound 10 potential matches for: The Suffering\033[0m
+2025-08-22 20:59:00: \033[0;34mDownloading: The Suffering\033[0m
+2025-08-22 20:59:00: Filename: Suffering%2C%20The%20%28Europe%29%20%28Demo%29.zip
+2025-08-22 20:59:00: URL: https://myrient.erista.me/files/Redump/Sony%20-%20PlayStation%202/Suffering%2C%20The%20%28Europe%29%20%28Demo%29.zip
+2025-08-22 20:59:57: \033[0;32mSuccessfully downloaded: The Suffering\033[0m
+2025-08-22 20:59:57: \033[0;32mRemoved 'The Suffering' from download queue\033[0m
+2025-08-22 20:59:57: \033[0;32m✓ Completed: The Suffering\033[0m
+2025-08-22 20:59:58: \033[0;34mWaiting 3 seconds before next download...\033[0m
+2025-08-22 21:00:01: \033[0;34m[11/42] Processing: Fatal Frame 3\033[0m
+2025-08-22 21:00:01: \033[0;34mSearching for: Fatal Frame 3\033[0m
+2025-08-22 21:00:02: \033[0;32mFound 2 potential matches for: Fatal Frame 3\033[0m
+2025-08-22 21:00:04: \033[0;34mDownloading: Fatal Frame 3\033[0m
+2025-08-22 21:00:05: Filename: Fatal%20Frame%20%28Asia%29.zip
+2025-08-22 21:00:05: URL: https://myrient.erista.me/files/Redump/Sony%20-%20PlayStation%202/Fatal%20Frame%20%28Asia%29.zip
+2025-08-22 21:01:24: \033[0;32mSuccessfully downloaded: Fatal Frame 3\033[0m
+2025-08-22 21:01:24: \033[0;32mRemoved 'Fatal Frame 3' from download queue\033[0m
+2025-08-22 21:01:24: \033[0;32m✓ Completed: Fatal Frame 3\033[0m
+2025-08-22 21:01:24: \033[0;34mWaiting 3 seconds before next download...\033[0m
+2025-08-22 21:01:27: \033[0;34m[12/42] Processing: Phantom Blood\033[0m
+2025-08-22 21:01:28: \033[0;34mSearching for: Phantom Blood\033[0m
+2025-08-22 21:01:29: \033[0;32mFound 1 potential matches for: Phantom Blood\033[0m
+2025-08-22 21:01:30: \033[0;34mDownloading: Phantom Blood\033[0m
+2025-08-22 21:01:30: Filename: Jojo%20no%20Kimyou%20na%20Bouken%20-%20Phantom%20Blood%20%28Japan%29.zip
+2025-08-22 21:01:30: URL: https://myrient.erista.me/files/Redump/Sony%20-%20PlayStation%202/Jojo%20no%20Kimyou%20na%20Bouken%20-%20Phantom%20Blood%20%28Japan%29.zip
+2025-08-22 21:02:01: \033[0;32mSuccessfully downloaded: Phantom Blood\033[0m
+2025-08-22 21:02:02: \033[0;32mRemoved 'Phantom Blood' from download queue\033[0m
+2025-08-22 21:02:02: \033[0;32m✓ Completed: Phantom Blood\033[0m
+2025-08-22 21:02:02: \033[0;34mWaiting 3 seconds before next download...\033[0m
+2025-08-22 21:02:05: \033[0;34m[13/42] Processing: Battle Stadium D.O.N\033[0m
+2025-08-22 21:02:06: \033[0;34mSearching for: Battle Stadium D.O.N\033[0m
+2025-08-22 21:02:07: \033[0;32mFound 1 potential matches for: Battle Stadium D.O.N\033[0m
+2025-08-22 21:02:08: \033[0;34mDownloading: Battle Stadium D.O.N\033[0m
+2025-08-22 21:02:08: Filename: Battle%20Stadium%20D.O.N%20%28Japan%29.zip
+2025-08-22 21:02:08: URL: https://myrient.erista.me/files/Redump/Sony%20-%20PlayStation%202/Battle%20Stadium%20D.O.N%20%28Japan%29.zip
+2025-08-22 21:02:21: \033[0;32mSuccessfully downloaded: Battle Stadium D.O.N\033[0m
+2025-08-22 21:02:21: \033[0;32mRemoved 'Battle Stadium D.O.N' from download queue\033[0m
+2025-08-22 21:02:21: \033[0;32m✓ Completed: Battle Stadium D.O.N\033[0m
+2025-08-22 21:02:21: \033[0;34mWaiting 3 seconds before next download...\033[0m
+2025-08-22 21:02:24: \033[0;34m[14/42] Processing: Namco vs. Capcom\033[0m
+2025-08-22 21:02:25: \033[0;34mSearching for: Namco vs. Capcom\033[0m
+2025-08-22 21:02:26: \033[1;33mNo matches found for: Namco vs. Capcom\033[0m
+2025-08-22 21:02:27: \033[1;33mCould not find suitable match for: Namco vs. Capcom\033[0m
+2025-08-22 21:02:27: \033[0;34mWaiting 3 seconds before next download...\033[0m
+2025-08-22 21:02:30: \033[0;34m[15/42] Processing: My Summer Vacation 2\033[0m
+2025-08-22 21:02:30: \033[0;34mSearching for: My Summer Vacation 2\033[0m
+2025-08-22 21:02:32: \033[1;33mNo matches found for: My Summer Vacation 2\033[0m
+2025-08-22 21:02:32: \033[1;33mCould not find suitable match for: My Summer Vacation 2\033[0m
+2025-08-22 21:02:32: \033[0;34mWaiting 3 seconds before next download...\033[0m
+2025-08-22 21:02:35: \033[0;34m[16/42] Processing: People Saru\033[0m
+2025-08-22 21:02:36: \033[0;34mSearching for: People Saru\033[0m
+2025-08-22 21:02:37: \033[1;33mNo matches found for: People Saru\033[0m
+2025-08-22 21:02:38: \033[1;33mCould not find suitable match for: People Saru\033[0m
+2025-08-22 21:02:38: \033[0;34mWaiting 3 seconds before next download...\033[0m
+2025-08-22 21:02:41: \033[0;34m[17/42] Processing: Code Age Commanders\033[0m
+2025-08-22 21:02:42: \033[0;34mSearching for: Code Age Commanders\033[0m
+2025-08-22 21:02:42: \033[0;32mFound 1 potential matches for: Code Age Commanders\033[0m
+2025-08-22 21:02:44: \033[0;34mDownloading: Code Age Commanders\033[0m
+2025-08-22 21:02:44: Filename: Code%20Age%20Commanders%20-%20Tsugumono%20Tsugarerumono%20%28Japan%2C%20Asia%29.zip
+2025-08-22 21:02:44: URL: https://myrient.erista.me/files/Redump/Sony%20-%20PlayStation%202/Code%20Age%20Commanders%20-%20Tsugumono%20Tsugarerumono%20%28Japan%2C%20Asia%29.zip
+2025-08-22 21:04:27: \033[0;32mSuccessfully downloaded: Code Age Commanders\033[0m
+2025-08-22 21:04:27: \033[0;32mRemoved 'Code Age Commanders' from download queue\033[0m
+2025-08-22 21:04:27: \033[0;32m✓ Completed: Code Age Commanders\033[0m
+2025-08-22 21:04:27: \033[0;34mWaiting 3 seconds before next download...\033[0m

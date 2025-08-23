@@ -1,0 +1,22 @@
+# Ignore Test Files directory
+Test Files/
+
+# Ignore downloads directory contents
+myrient_batch_downloader/downloads/
+
+# Ignore temporary files
+*.tmp
+*.temp
+
+# Ignore log files
+*.log
+
+# Ignore downloaded ROM files
+*.zip
+*.iso
+*.bin
+*.cue
+
+# Ignore system files
+.DS_Store
+Thumbs.db
