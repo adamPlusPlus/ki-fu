@@ -7,8 +7,8 @@ echo.
 echo Press Ctrl+C to stop the server
 echo.
 
-REM Install Flask if not already installed
-python -m pip install flask --quiet
+REM Install dependencies if not already installed
+python -m pip install flask pyperclip keyboard --quiet
 
 REM Start the web interface
 python web_interface.py

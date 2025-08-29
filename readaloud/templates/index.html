@@ -31,7 +31,7 @@
                         <label for="ttsEngine">Engine:</label>
                         <select id="ttsEngine" class="select-input">
                             {% for engine in engines %}
-                            <option value="{{ engine.id }}" {% if config.tts_engine == engine.id %}selected{% endif %}>
+                            <option value="{{ engine.id }}" {% if (config.tts_engine | default('')) == engine.id %}selected{% endif %}>
                                 {{ engine.name }}
                             </option>
                             {% endfor %}
@@ -46,7 +46,7 @@
                         <label for="voice">Voice:</label>
                         <select id="voice" class="select-input">
                             {% for voice in voices %}
-                            <option value="{{ voice.id }}" {% if config.voice == voice.id %}selected{% endif %}>
+                            <option value="{{ voice.id }}" {% if (config.voice | default('')) == voice.id %}selected{% endif %}>
                                 {{ voice.name }}
                             </option>
                             {% endfor %}
@@ -55,23 +55,23 @@
                     </div>
 
                     <div class="setting-group">
-                        <label for="temperature">Temperature: <span id="tempValue">{{ config.temperature }}</span></label>
+                        <label for="temperature">Temperature: <span id="tempValue">{{ config.temperature | default(0.3) }}</span></label>
                         <input type="range" id="temperature" min="0.0" max="1.0" step="0.1" 
-                               value="{{ config.temperature }}" class="slider">
+                               value="{{ config.temperature | default(0.3) }}" class="slider">
                         <small class="setting-description">Controls voice variation (0.0 = consistent, 1.0 = varied)</small>
                     </div>
 
                     <div class="setting-group">
-                        <label for="volume">Volume: <span id="volValue">{{ (config.volume * 100) | int }}%</span></label>
+                        <label for="volume">Volume: <span id="volValue">{{ ((config.volume | default(0.8)) * 100) | int }}%</span></label>
                         <input type="range" id="volume" min="0.0" max="1.0" step="0.1" 
-                               value="{{ config.volume }}" class="slider">
+                               value="{{ config.volume | default(0.8) }}" class="slider">
                         <small class="setting-description">Audio output volume level</small>
                     </div>
 
                     <div class="setting-group">
-                        <label for="speed">Speed: <span id="speedValue">{{ config.speed }}x</span></label>
+                        <label for="speed">Speed: <span id="speedValue">{{ config.speed | default(1.0) }}x</span></label>
                         <input type="range" id="speed" min="0.5" max="2.0" step="0.1" 
-                               value="{{ config.speed }}" class="slider">
+                               value="{{ config.speed | default(1.0) }}" class="slider">
                         <small class="setting-description">Speech playback speed</small>
                     </div>
                 </div>
@@ -126,15 +126,36 @@
                     <div class="info-grid">
                         <div class="info-item">
                             <span class="info-label">Engine:</span>
-                            <span class="info-value" id="currentEngine">{{ config.tts_engine }}</span>
+                            <span class="info-value" id="currentEngine">{{ config.tts_engine | default('Not set') }}</span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Voice:</span>
-                            <span class="info-value" id="currentVoice">{{ config.voice }}</span>
+                            <span class="info-value" id="currentVoice">{{ config.voice | default('Not set') }}</span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Higgs Audio:</span>
                             <span class="info-value" id="higgsStatus">Checking...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h2><i class="fas fa-server"></i> Service Status</h2>
+                    <div class="service-status">
+                        <div class="service-info">
+                            <span class="service-label">Status:</span>
+                            <span class="service-value" id="serviceStatus">Checking...</span>
+                        </div>
+                        <div class="service-controls">
+                            <button id="startService" class="btn btn-success">
+                                <i class="fas fa-play"></i> Start Service
+                            </button>
+                            <button id="stopService" class="btn btn-danger">
+                                <i class="fas fa-stop"></i> Stop Service
+                            </button>
+                        </div>
+                        <div class="service-details">
+                            <small id="serviceDetails">Service manages the AI model in memory for faster TTS generation</small>
                         </div>
                     </div>
                 </div>
@@ -155,6 +176,35 @@
         <div class="toast-content">
             <i class="toast-icon"></i>
             <span class="toast-message"></span>
+        </div>
+    </div>
+
+    <!-- Loading Modal -->
+    <div id="loadingModal" class="loading-modal">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h3 id="loadingTitle">Processing TTS Request...</h3>
+            <p id="loadingMessage">This may take up to 2 minutes for the first generation.</p>
+            <div class="loading-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span class="progress-text" id="progressText">0%</span>
+            </div>
+            <div class="loading-steps">
+                <div class="step" id="step1">
+                    <i class="fas fa-cog fa-spin"></i>
+                    <span>Loading model...</span>
+                </div>
+                <div class="step" id="step2">
+                    <i class="fas fa-microphone"></i>
+                    <span>Generating audio...</span>
+                </div>
+                <div class="step" id="step3">
+                    <i class="fas fa-volume-up"></i>
+                    <span>Playing audio...</span>
+                </div>
+            </div>
         </div>
     </div>
 

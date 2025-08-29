@@ -1,0 +1,22 @@
+# Home Assistant Configuration
+# Copy this file to .env and fill in your actual values
+
+# Home Assistant instance URL (without trailing slash)
+HA_URL=http://your-ha-instance:8123
+
+# Long-lived access token from Home Assistant
+# Generate this in Home Assistant: Profile > Long-Lived Access Tokens
+HA_ACCESS_TOKEN=your-long-lived-access-token-here
+
+# SSL verification (set to false if using self-signed certificates)
+HA_SSL_VERIFY=true
+
+# MQTT broker settings (if using MQTT)
+MQTT_BROKER=your-mqtt-broker
+MQTT_PORT=1883
+MQTT_USERNAME=your-mqtt-username
+MQTT_PASSWORD=your-mqtt-password
+
+# Development settings
+DEBUG=true
+LOG_LEVEL=INFO
