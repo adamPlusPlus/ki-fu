@@ -1,0 +1,103 @@
+{
+  "streamdeck": {
+    "host": "localhost",
+    "port": 8000,
+    "token": "readaloud_token_12345",
+    "auto_reconnect": true,
+    "reconnect_delay": 5
+  },
+  "buttons": {
+    "read_clipboard": {
+      "id": 1,
+      "name": "Read Clipboard",
+      "action": "read_clipboard",
+      "icon": "📋",
+      "color": "#4CAF50",
+      "description": "Read current clipboard content aloud"
+    },
+    "read_selection": {
+      "id": 2,
+      "name": "Read Selection",
+      "action": "read_selection",
+      "icon": "📝",
+      "color": "#2196F3",
+      "description": "Read currently selected text aloud"
+    },
+    "stop_audio": {
+      "id": 3,
+      "name": "Stop Audio",
+      "action": "stop_audio",
+      "icon": "⏹️",
+      "color": "#F44336",
+      "description": "Stop current audio playback"
+    },
+    "read_file": {
+      "id": 4,
+      "name": "Read File",
+      "action": "read_file",
+      "icon": "📄",
+      "color": "#FF9800",
+      "description": "Read a specific file aloud",
+      "params": {
+        "file_path": "./README.md"
+      }
+    },
+    "toggle_monitoring": {
+      "id": 5,
+      "name": "Toggle Monitor",
+      "action": "toggle_monitoring",
+      "icon": "👁️",
+      "color": "#9C27B0",
+      "description": "Toggle file monitoring",
+      "params": {
+        "file_path": "./README.md"
+      }
+    },
+    "quick_actions": {
+      "id": 6,
+      "name": "Quick Actions",
+      "action": "menu",
+      "icon": "⚡",
+      "color": "#607D8B",
+      "description": "Quick access to common actions",
+      "sub_actions": [
+        {
+          "name": "Read Last File",
+          "action": "read_file",
+          "params": {"file_path": "./last_read.txt"}
+        },
+        {
+          "name": "Read System Info",
+          "action": "read_text",
+          "params": {"text": "System information loaded"}
+        }
+      ]
+    }
+  },
+  "profiles": {
+    "default": {
+      "name": "ReadAloud Default",
+      "description": "Default ReadAloud StreamDeck profile",
+      "buttons": [1, 2, 3, 4, 5, 6]
+    },
+    "minimal": {
+      "name": "ReadAloud Minimal",
+      "description": "Minimal ReadAloud controls",
+      "buttons": [1, 2, 3]
+    },
+    "advanced": {
+      "name": "ReadAloud Advanced",
+      "description": "Advanced ReadAloud controls with file monitoring",
+      "buttons": [1, 2, 3, 4, 5, 6]
+    }
+  },
+  "settings": {
+    "auto_start": true,
+    "background_mode": true,
+    "log_level": "INFO",
+    "save_audio_files": false,
+    "max_text_length": 1000,
+    "default_voice": "default",
+    "temperature": 0.3
+  }
+}

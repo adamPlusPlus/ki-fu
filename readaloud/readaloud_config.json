@@ -1,0 +1,31 @@
+{
+  "tts_engine": "higgs_audio",
+  "voice": "default",
+  "temperature": 0.3,
+  "seed": null,
+  "audio_output_path": "./audio_output",
+  "higgs_config": {
+    "model_path": "H:/AI/higgs/higgs-audio",
+    "python_path": "python",
+    "higgs_script": "examples/generation.py"
+  },
+  "coqui_config": {
+    "model_name": "tts_models/en/ljspeech/tacotron2-DDC"
+  },
+  "hotkeys": {
+    "read_selection": "ctrl+shift+r",
+    "read_clipboard": "ctrl+shift+c",
+    "stop_audio": "ctrl+shift+s"
+  },
+  "monitoring": {
+    "clipboard_interval": 1.0,
+    "file_check_interval": 1.0
+  },
+  "streamdeck": {
+    "host": "localhost",
+    "port": 8000,
+    "token": "readaloud_token_12345",
+    "auto_reconnect": true,
+    "reconnect_delay": 5
+  }
+}

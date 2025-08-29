@@ -30,8 +30,21 @@ done
 
 # ---------- deps ----------
 need() { command -v "$1" >/dev/null 2>&1 || { echo "Missing dependency: $1" >&2; exit 3; }; }
-need yt-dlp
-need jq
+# Use local jq.exe if available
+JQ_CMD="jq"
+if [[ -f "./jq.exe" ]]; then
+  JQ_CMD="./jq.exe"
+elif [[ -f "../jq.exe" ]]; then
+  JQ_CMD="../jq.exe"
+fi
+
+# Use local yt-dlp.exe if available
+YTDLP_CMD="yt-dlp"
+if [[ -f "./yt-dlp.exe" ]]; then
+  YTDLP_CMD="./yt-dlp.exe"
+elif [[ -f "../yt-dlp.exe" ]]; then
+  YTDLP_CMD="../yt-dlp.exe"
+fi
 
 # ---------- layout ----------
 WORKDIR="$(pwd)/_ytpl_work_$(date +%s)"
@@ -46,7 +59,8 @@ OUT_TMPL="$WORKDIR/%(id)s.%(ext)s"
 echo "==> Output template: $OUT_TMPL"
 
 echo "==> Fetching metadata, descriptions, and captions …"
-yt-dlp \
+echo "==> Using: $YTDLP_CMD"
+"$YTDLP_CMD" \
   --yes-playlist \
   --ignore-errors \
   --skip-download \
@@ -202,7 +216,7 @@ pick_transcript_file() {
 # Safe read from info.json (prints empty if missing)
 jq_get() {
   local key="$1" json="$2"
-  jq -r "$key // empty" "$json"
+  "$JQ_CMD" -r "$key // empty" "$json"
 }
 
 # Sanitize filename by removing/replacing problematic characters
@@ -332,10 +346,10 @@ for J in "${INFO_FILES[@]}"; do
 
     # Chapters
     echo "### Chapters"
-    CH_COUNT=$(jq -r '.chapters | length // 0' "$J")
+    CH_COUNT=$("$JQ_CMD" -r '.chapters | length // 0' "$J")
     if [[ "$CH_COUNT" -gt 0 ]]; then
       # List: [HH:MM:SS] Chapter Title
-      jq -r '.chapters[] | "[" + (.start_time | tonumber | strftime("%T")) + "] " + .title' \
+      "$JQ_CMD" -r '.chapters[] | "[" + (.start_time | tonumber | strftime("%T")) + "] " + .title' \
          --argjson now 0 \
          "$J"
     else

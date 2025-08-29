@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadAloud - TTS Control Panel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-volume-up"></i> ReadAloud</h1>
+                <p class="subtitle">Text-to-Speech Control Panel</p>
+            </div>
+            <div class="status-indicator" id="statusIndicator">
+                <i class="fas fa-circle"></i>
+                <span id="statusText">Connecting...</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Left Panel - Settings -->
+            <div class="left-panel">
+                <div class="panel-section">
+                    <h2><i class="fas fa-cog"></i> TTS Engine</h2>
+                    <div class="setting-group">
+                        <label for="ttsEngine">Engine:</label>
+                        <select id="ttsEngine" class="select-input">
+                            {% for engine in engines %}
+                            <option value="{{ engine.id }}" {% if config.tts_engine == engine.id %}selected{% endif %}>
+                                {{ engine.name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                        <small class="setting-description">{{ engines[0].description }}</small>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h2><i class="fas fa-microphone"></i> Voice Settings</h2>
+                    <div class="setting-group">
+                        <label for="voice">Voice:</label>
+                        <select id="voice" class="select-input">
+                            {% for voice in voices %}
+                            <option value="{{ voice.id }}" {% if config.voice == voice.id %}selected{% endif %}>
+                                {{ voice.name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                        <small class="setting-description">{{ voices[0].description }}</small>
+                    </div>
+
+                    <div class="setting-group">
+                        <label for="temperature">Temperature: <span id="tempValue">{{ config.temperature }}</span></label>
+                        <input type="range" id="temperature" min="0.0" max="1.0" step="0.1" 
+                               value="{{ config.temperature }}" class="slider">
+                        <small class="setting-description">Controls voice variation (0.0 = consistent, 1.0 = varied)</small>
+                    </div>
+
+                    <div class="setting-group">
+                        <label for="volume">Volume: <span id="volValue">{{ (config.volume * 100) | int }}%</span></label>
+                        <input type="range" id="volume" min="0.0" max="1.0" step="0.1" 
+                               value="{{ config.volume }}" class="slider">
+                        <small class="setting-description">Audio output volume level</small>
+                    </div>
+
+                    <div class="setting-group">
+                        <label for="speed">Speed: <span id="speedValue">{{ config.speed }}x</span></label>
+                        <input type="range" id="speed" min="0.5" max="2.0" step="0.1" 
+                               value="{{ config.speed }}" class="slider">
+                        <small class="setting-description">Speech playback speed</small>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h2><i class="fas fa-save"></i> Configuration</h2>
+                    <button id="saveConfig" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Settings
+                    </button>
+                    <button id="resetConfig" class="btn btn-secondary">
+                        <i class="fas fa-undo"></i> Reset to Defaults
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Panel - Controls -->
+            <div class="right-panel">
+                <div class="panel-section">
+                    <h2><i class="fas fa-play"></i> Quick Actions</h2>
+                    
+                    <div class="action-buttons">
+                        <button id="readClipboard" class="btn btn-action btn-large">
+                            <i class="fas fa-clipboard"></i>
+                            <span>Read Clipboard</span>
+                        </button>
+                        
+                        <button id="readSelection" class="btn btn-action btn-large">
+                            <i class="fas fa-highlighter"></i>
+                            <span>Read Selection</span>
+                        </button>
+                        
+                        <button id="stopAudio" class="btn btn-danger btn-large">
+                            <i class="fas fa-stop"></i>
+                            <span>Stop Audio</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h2><i class="fas fa-keyboard"></i> Test TTS</h2>
+                    <div class="test-area">
+                        <textarea id="testText" class="text-input" 
+                                  placeholder="Enter text to test TTS...">Hello! This is a test of the ReadAloud text-to-speech system. How does it sound?</textarea>
+                        <button id="testTTS" class="btn btn-success btn-large">
+                            <i class="fas fa-play"></i> Test TTS
+                        </button>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h2><i class="fas fa-info-circle"></i> System Info</h2>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Engine:</span>
+                            <span class="info-value" id="currentEngine">{{ config.tts_engine }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Voice:</span>
+                            <span class="info-value" id="currentVoice">{{ config.voice }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Higgs Audio:</span>
+                            <span class="info-value" id="higgsStatus">Checking...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <span>ReadAloud v1.0</span>
+                <span>Powered by Higgs Audio</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast">
+        <div class="toast-content">
+            <i class="toast-icon"></i>
+            <span class="toast-message"></span>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
